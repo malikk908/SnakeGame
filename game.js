@@ -3,7 +3,7 @@ let score = 0;
 let lastPaintTime = 0;
 
 let inputDir = { x: 0, y: 0 }
-let lastInputDir = { x: 0, y: 0 } 
+let lastInputDir = { x: 0, y: 0 }
 
 
 
@@ -30,13 +30,13 @@ function main(ctime) {
 function isCollide(sarr) {
     // if you bump into yourself
     for (let i = 1; i < sarr.length; i++) {
-        if (sarr[i].x === sarr[0].x && sarr[i].y === sarr[0].y){
+        if (sarr[i].x === sarr[0].x && sarr[i].y === sarr[0].y) {
             return true;
         }
-           
+
     }
     // if you bump into wall
-    if (sarr[0].x >= 21 || sarr[0].x <= 0 || sarr[0].y >= 21 || sarr[0].y <= 0 ) {
+    if (sarr[0].x >= 21 || sarr[0].x <= 0 || sarr[0].y >= 21 || sarr[0].y <= 0) {
         return true;
     }
 }
@@ -48,29 +48,37 @@ function isCollide(sarr) {
 function gameEngine() {
     //Part 1: Updating the sname array and food
     if (isCollide(snakeArr)) {
+        score = 0;
+        scoreBoard.innerHTML = "Score: " + score
+
+
         inputDir = { x: 0, y: 0 }
         alert("Game Over, press any key to play again")
         snakeArr = [{ x: 20, y: 5 }]
-        score = 0;
 
     }
 
     //if you have eaten the food, increment the score and regenrate the food
     if (snakeArr[0].x === food.x && snakeArr[0].y === food.y) {
+        score += 1;
+        scoreBoard.innerHTML = "Score: " + score
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y })
-        if(snakeArr.length > 4){
+        if (snakeArr.length > 4) {
             speed = 8
         }
-        if(snakeArr.length > 5){
+        if (snakeArr.length > 5) {
             speed = 10
         }
-        if(snakeArr.length > 8){
+        if (snakeArr.length > 8) {
             speed = 13
         }
 
         let a = 2;
         let b = 19;
-        food = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
+        food = {
+            x: Math.round(a + (b - a) * Math.random()),
+            y: Math.round(a + (b - a) * Math.random())
+        }
     }
 
     //Moving the snake
@@ -119,30 +127,30 @@ window.requestAnimationFrame(main);
 window.addEventListener('keydown', e => {
     //Start the game
     switch (e.key) {
-        
+
         case "ArrowUp":
-            if(lastInputDir.y !== 0) break
+            if (lastInputDir.y !== 0) break
             console.log("ArrowUp")
             inputDir.x = 0;
             inputDir.y = -1;
             break;
 
         case "ArrowDown":
-            if(lastInputDir.y !== 0) break
+            if (lastInputDir.y !== 0) break
             console.log("ArrowDown")
             inputDir.x = 0;
             inputDir.y = 1;
             break;
 
         case "ArrowLeft":
-            if(lastInputDir.x !== 0) break
+            if (lastInputDir.x !== 0) break
             console.log("ArrowLeft")
             inputDir.x = -1;
             inputDir.y = 0;
             break;
 
         case "ArrowRight":
-            if(lastInputDir.x !== 0) break
+            if (lastInputDir.x !== 0) break
             console.log("ArrowRight")
             inputDir.x = 1;
             inputDir.y = 0;

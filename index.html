@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnakeMania</title>
     <style>
-        body{
+        body {
             height: 100vh;
             width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0;
-            background-color: black;
+            background-color: rgb(0, 0, 0);
         }
 
-        #board{
+        #scoreBoard {
+            position: absolute;
+            top: 9px;
+            right: 400px;
+            font-size: 39px;
+            color: white;
+        }
+
+        #board {
             background-color: #ccc;
             width: 100vmin;
             height: 100vmin;
@@ -25,32 +34,34 @@
 
         }
 
-        .head{
+        .head {
             background-color: red;
             border: 0.25vmin solid black;
 
         }
 
 
-        .snake{
+        .snake {
             background-color: purple;
             border: 0.25vmin solid black;
         }
 
-        .food{
+        .food {
             background-color: yellow;
             border: 0.25vmin solid black;
 
         }
-
     </style>
 
     <script src="game.js"></script>
 </head>
-<body>
-    <div id="board">
 
+<body>
+    <div class="body">
+        <div id="scoreBoard">Score: 0</div>
+        <div id="board"></div>
     </div>
-    
+
 </body>
+
 </html>
