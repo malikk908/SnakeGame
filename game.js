@@ -3,6 +3,11 @@ let score = 0;
 let lastPaintTime = 0;
 
 let inputDir = { x: 0, y: 0 }
+let lastInputDir = { x: 0, y: 0 } 
+
+
+
+
 
 let snakeArr = [
     { x: 18, y: 5 }
@@ -59,6 +64,7 @@ function gameEngine() {
     }
 
     //Moving the snake
+    lastInputDir = inputDir
     for (let i = snakeArr.length - 2; i >= 0; i--) {
         snakeArr[i + 1] = { ...snakeArr[i] };
 
@@ -101,34 +107,36 @@ function gameEngine() {
 
 window.requestAnimationFrame(main);
 window.addEventListener('keydown', e => {
-    inputDir = { x: 0, y: 1 } //Start the game
+    //Start the game
     switch (e.key) {
+        
         case "ArrowUp":
+            if(lastInputDir.y !== 0) break
             console.log("ArrowUp")
             inputDir.x = 0;
             inputDir.y = -1;
             break;
 
         case "ArrowDown":
+            if(lastInputDir.y !== 0) break
             console.log("ArrowDown")
             inputDir.x = 0;
             inputDir.y = 1;
             break;
 
         case "ArrowLeft":
+            if(lastInputDir.x !== 0) break
             console.log("ArrowLeft")
             inputDir.x = -1;
             inputDir.y = 0;
             break;
 
         case "ArrowRight":
+            if(lastInputDir.x !== 0) break
             console.log("ArrowRight")
             inputDir.x = 1;
             inputDir.y = 0;
             break;
-
-
-
 
         default:
             break;
