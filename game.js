@@ -1,4 +1,4 @@
-let speed = 10;
+let speed = 5;
 let score = 0;
 let lastPaintTime = 0;
 
@@ -58,6 +58,16 @@ function gameEngine() {
     //if you have eaten the food, increment the score and regenrate the food
     if (snakeArr[0].x === food.x && snakeArr[0].y === food.y) {
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y })
+        if(snakeArr.length > 4){
+            speed = 8
+        }
+        if(snakeArr.length > 5){
+            speed = 10
+        }
+        if(snakeArr.length > 8){
+            speed = 13
+        }
+
         let a = 2;
         let b = 19;
         food = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
